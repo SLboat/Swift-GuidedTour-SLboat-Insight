@@ -24,8 +24,9 @@ let myConstant = 42 //常量,不可变化,会得到警告噢
 let implicitInteger = 70 //一个整数类型?
 String(implicitInteger.dynamicType) //哈,来一个打印类型...,这里是int
 let implicitDouble = 70.0 //一个浮点数类型?
-let explicitDouble: Double = 70
+let explicitDouble: Double = 70 //双浮点,显式的...
 
+let explicitFloat: Float = 64 //实验!
 //: > **Experiment**:
 //: > Create a constant with an explicit type of `Float` and a value of `4`.
 //:
@@ -33,7 +34,9 @@ let explicitDouble: Double = 70
 //:
 let label = "The width is "
 let width = 94
-let widthLabel = label + String(width)
+let widthLabel = label + String(width) //都是光明正大的转换的,不会隐式转换
+
+//let widthLabel = label + width //实验,出意外的..overloads for '+' exist with these partially matching parameter lists: (Int, Int), (String, String),多友好的提醒阿.
 
 //: > **Experiment**:
 //: > Try removing the conversion to `String` from the last line. What error do you get?
@@ -42,8 +45,12 @@ let widthLabel = label + String(width)
 //:
 let apples = 3
 let oranges = 5
-let appleSummary = "I have \(apples) apples."
-let fruitSummary = "I have \(apples + oranges) pieces of fruit."
+let appleSummary = "I have \(apples) apples." //反斜杠和括号!
+let fruitSummary = "I have \(apples + oranges + 3) pieces of fruit." //计算值,哈!
+
+//实验
+let someName = "pink"
+let greet = "\(someName),hi,let me tell you,1.3+2.4 = \(1.3+2.4)"
 
 //: > **Experiment**:
 //: > Use `\()` to include a floating-point calculation in a string and to include someone’s name in a greeting.
