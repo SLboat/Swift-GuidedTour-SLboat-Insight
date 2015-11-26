@@ -2,6 +2,9 @@
 //:
 //: Tradition suggests that the first program in a new language should print the words “Hello, world!” on the screen. In Swift, this can be done in a single line:
 //:
+
+//: 留意: 让他们存档到源码里去!
+
 print("Hello, world!") //问候世界
 print("你好!世界!")
 
@@ -57,24 +60,24 @@ let greet = "\(someName),hi,let me tell you,1.3+2.4 = \(1.3+2.4)"
 //:
 //: Create arrays and dictionaries using brackets (`[]`), and access their elements by writing the index or key in brackets. A comma is allowed after the last element.
 //:
-var shoppingList = ["catfish", "water", "tulips", "blue paint"]
-shoppingList[1] = "bottle of water"
+var shoppingList = ["catfish", "water", "tulips", "blue paint"] //数组,哈!
+shoppingList[1] = "bottle of water" //数组的一个,用序号巡查.
 
 var occupations = [
     "Malcolm": "Captain",
-    "Kaylee": "Mechanic",
+    "Kaylee": "Mechanic", //最后有个逗号,没问题!js看起来也这样!
  ]
-occupations["Jayne"] = "Public Relations"
+occupations["Jayne"] = "Public Relations" //等等,这个就成了字典了吧!
 
 //: To create an empty array or dictionary, use the initializer syntax.
 //:
-let emptyArray = [String]()
-let emptyDictionary = [String: Float]()
+let emptyArray = [String]() //空数组,字符串的
+let emptyDictionary = [String: Float]() //数组对浮点数的空数组..
 
 //: If type information can be inferred, you can write an empty array as `[]` and an empty dictionary as `[:]`—for example, when you set a new value for a variable or pass an argument to a function.
 //:
-shoppingList = []
-occupations = [:]
+shoppingList = [] //类型无关
+occupations = [:] //类型无关的字典
 
 
 
