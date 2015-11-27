@@ -4,8 +4,8 @@
 //:
 let individualScores = [75, 43, 103, 87, 12]
 var teamScore = 0
-for score in individualScores {
-    if score > 50 {
+for score in individualScores { //花括号必选
+    if score > 50 { //圆括号可选
         teamScore += 3
     } else {
         teamScore += 1
@@ -17,15 +17,26 @@ print(teamScore)
 //:
 //: You can use `if` and `let` together to work with values that might be missing. These values are represented as optionals. An optional value either contains a value or contains `nil` to indicate that a value is missing. Write a question mark (`?`) after the type of a value to mark the value as optional.
 //:
-var optionalString: String? = "Hello"
-print(optionalString == nil)
+var optionalString: String? = "Hello" //可选值!哈!
 
-var optionalName: String? = "John Appleseed"
-var greeting = "Hello!"
-if let name = optionalName {
-    greeting = "Hello, \(name)"
+print(optionalString == nil) //打印它是否是空的
+
+var optionalName: String? = "John Appleseed" //可选的名称
+var greeting = "Hello!" //问候
+if let name = optionalName { //能够赋予
+    greeting = "Hello, \(name)" //打印
 }
 
+//空来一次
+optionalName = nil
+if let name = optionalName { //能够赋予,这是仅仅内部使用的实例变量,有效的时候-解包,赋值,给内部使用.
+    greeting = "Hello, \(name)" //打印
+}
+
+//如果不能let解包
+if optionalName != nil{
+    greeting = "\(optionalString),\(optionalName)"
+}
 //: > **Experiment**:
 //: > Change `optionalName` to `nil`. What greeting do you get? Add an `else` clause that sets a different greeting if `optionalName` is `nil`.
 //:
@@ -35,19 +46,20 @@ if let name = optionalName {
 //:
 let nickName: String? = nil
 let fullName: String = "John Appleseed"
-let informalGreeting = "Hi \(nickName ?? fullName)"
+let informalGreeting = "Hi \(nickName ?? fullName)" //有个默认值了!哈!
 
 //: Switches support any kind of data and a wide variety of comparison operations—they aren’t limited to integers and tests for equality.
 //:
-let vegetable = "red pepper"
-switch vegetable {
-    case "celery":
+let vegetable = "red pepper" //原始字符串
+switch vegetable { //开始切换开关
+    case "celery": //这是字符串对比
         print("Add some raisins and make ants on a log.")
-    case "cucumber", "watercress":
+        //默认不会往下,不用break
+    case "cucumber", "watercress": //这是两种字符串对比
         print("That would make a good tea sandwich.")
-    case let x where x.hasSuffix("pepper"):
+    case let x where x.hasSuffix("pepper"): //字符串拆包,并且判断前缀
         print("Is it a spicy \(x)?")
-    default:
+    default: //默认的玩意,必须有它...
         print("Everything tastes good in soup.")
 }
 

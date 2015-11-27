@@ -80,7 +80,6 @@ shoppingList = [] //类型无关
 occupations = [:] //类型无关的字典
 
 
-
 //: See [License](License) for this sample's licensing information.
 //: 
 //: [Next](@next)
