@@ -131,6 +131,8 @@ print(secondForLoop)
 
 //: Use `..<` to make a range that omits its upper value, and use `...` to make a range that includes both values.
 //:
-
+for _ in 0...0 { //这就是新式的全包含,怎么都会有一次
+    print("打印了一次.")
+}
 
 //: [Previous](@previous) | [Next](@next)

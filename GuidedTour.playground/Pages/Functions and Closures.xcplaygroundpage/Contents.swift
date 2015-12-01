@@ -2,47 +2,59 @@
 //:
 //: Use `func` to declare a function. Call a function by following its name with a list of arguments in parentheses. Use `->` to separate the parameter names and types from the function’s return type.
 //:
-func greet(name: String, day: String) -> String {
-    return "Hello \(name), today is \(day)."
+func greet(name: String, day: String) -> String {  //一个函数,括号分割了参数(包含类型),横线和箭头指向返回值.
+    return "Hello \(name), today is \(day)." //语句快,这个是引用字符串啥子的.
 }
-greet("Bob", day: "Tuesday")
+greet("Bob", day: "Tuesday") //调用函数,不要名称也可以..
+
+//greet(name: "hi",day: "lo") //第一个参数不可以跟名字,否则出错: error: extraneous argument label 'name:' in call
+
+func tellLanch(name: String, lanuch: String) -> String{
+    return "Hi \(name), today's special lunch is \(lanuch)" //会自动补充的,自然的
+}
+
+tellLanch("Mikey", lanuch: "White food")
 
 //: > **Experiment**:
 //: > Remove the `day` parameter. Add a parameter to include today’s lunch special in the greeting.
 //:
 //: Use a tuple to make a compound value—for example, to return multiple values from a function. The elements of a tuple can be referred to either by name or by number.
 //:
-func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
-    var min = scores[0]
-    var max = scores[0]
-    var sum = 0
+func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) { //欢迎来到元祖世界,奇怪的tuple,土坡!它可以不定的组成,不同的类型,可以用名字也可以用序号来取得它.
+    var min = scores[0] //最小-第一个
+    var max = scores[0] //最大-第一个
+    var sum = 0 //总和: 初始化
 
-    for score in scores {
-        if score > max {
-            max = score
-        } else if score < min {
-            min = score
+    for score in scores { //遍历分数
+        if score > max { //比最大的大
+            max = score //冒泡起来
+        } else if score < min { //比最小的小
+            min = score //冒泡下去
         }
-        sum += score
+        sum += score //比和加一加
     }
 
-    return (min, max, sum)
+    return (min, max, sum) //返回三个家伙,也可以跟上标签
 }
-let statistics = calculateStatistics([5, 3, 100, 3, 9])
-print(statistics.sum)
-print(statistics.2)
+let statistics = calculateStatistics([5, 3, 100, 3, 9]) //开始统计
+print(statistics.sum) //这是和
+print(statistics.2) //这是第二个,这是最大值
 
 //: Functions can also take a variable number of arguments, collecting them into an array.
 //:
-func sumOf(numbers: Int...) -> Int {
-    var sum = 0
-    for number in numbers {
-        sum += number
+func sumOf(numbers: Int...) -> Int { //三个点,放置一堆的玩意
+    var sum = 0 //初步的和
+    for number in numbers { //遍历
+        sum += number //加和
     }
-    return sum
+    return sum //返回和
 }
-sumOf()
-sumOf(42, 597, 12)
+sumOf() //没有人的和,得到0
+sumOf(42, 597, 12) //三个的和,得到的是总和651
+
+func nameWithsumOf(numbers: Int... , name: String) -> String{ //逗号很敏感,要小心
+    return "\(name),\(numbers) has sum: \(sumOf(numbers))" //会得到错误error: cannot invoke 'sumOf' with an argument list of type '([Int])'
+}
 
 //: > **Experiment**:
 //: > Write a function that calculates the average of its arguments.
