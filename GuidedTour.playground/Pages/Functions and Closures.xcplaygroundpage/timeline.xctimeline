@@ -7,5 +7,15 @@
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "#CharacterRangeLen=41&amp;CharacterRangeLoc=1614&amp;EndingColumnNumber=42&amp;EndingLineNumber=54&amp;StartingColumnNumber=1&amp;StartingLineNumber=54&amp;Timestamp=470667466.491419"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "#CharacterRangeLen=3&amp;CharacterRangeLoc=1799&amp;EndingColumnNumber=12&amp;EndingLineNumber=61&amp;StartingColumnNumber=9&amp;StartingLineNumber=61&amp;Timestamp=470668183.844144"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
    </TimelineItems>
 </Timeline>

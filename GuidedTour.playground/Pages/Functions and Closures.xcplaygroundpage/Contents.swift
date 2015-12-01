@@ -42,6 +42,7 @@ print(statistics.2) //这是第二个,这是最大值
 
 //: Functions can also take a variable number of arguments, collecting them into an array.
 //:
+//这里是变长参数
 func sumOf(numbers: Int...) -> Int { //三个点,放置一堆的玩意
     var sum = 0 //初步的和
     for number in numbers { //遍历
@@ -52,10 +53,29 @@ func sumOf(numbers: Int...) -> Int { //三个点,放置一堆的玩意
 sumOf() //没有人的和,得到0
 sumOf(42, 597, 12) //三个的和,得到的是总和651
 
+
+//带着另一个参数!
 func nameWithsumOf(numbers: Int... , name: String) -> String{ //逗号很敏感,要小心
-    return "\(name),\(numbers) has sum: \(sumOf(numbers))" //会得到错误error: cannot invoke 'sumOf' with an argument list of type '([Int])'
+    var sum = 0 //初步的和
+    for number in numbers { //遍历
+        sum += number //加和
+    }
+    return "\(name),\(numbers) has sum: \(sum)" //会得到错误error: cannot invoke 'sumOf' with an argument list of type '([Int])'
 }
 
+nameWithsumOf(12,12,12,123, name: "mike") //瞧,有趣的是第二个是需要标签的
+
+
+// 实验: 计算平均数
+func average(numbers: Double...) -> Double{
+    var sum = 0.0 //必须浮点数对应浮点数
+    for number in numbers{
+        sum += number
+    }
+    return sum / Double(numbers.count)
+}
+
+print("的平均数是:\(average(12,12,12,14,15.3))")
 //: > **Experiment**:
 //: > Write a function that calculates the average of its arguments.
 //:
