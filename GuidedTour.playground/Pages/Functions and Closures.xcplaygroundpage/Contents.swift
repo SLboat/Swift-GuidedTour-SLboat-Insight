@@ -81,42 +81,67 @@ print("的平均数是:\(average(12,12,12,14,15.3))")
 //:
 //: Functions can be nested. Nested functions have access to variables that were declared in the outer function. You can use nested functions to organize the code in a function that is long or complex.
 //:
-func returnFifteen() -> Int {
-    var y = 10
-    func add() {
-        y += 5
+//函数可以嵌套,好处是简化太长的或者复杂的函数 !
+func returnFifteen() -> Int { //一个函数,返回int,不接受参数
+    var y = 10 //一个大函数里的变量
+    func add() { //一个大函数里的内函数
+        y += 5 //内函数可以访问外部的变量!它是可以写的
     }
-    add()
-    return y
+    add() //呼叫内函数,y变化
+    return y //返回自身变量(内函数的外变量)
 }
-returnFifteen()
-
+returnFifteen() //调用大函数->连锁的内函数也调用了
 //: Functions are a first-class type. This means that a function can return another function as its value.
 //:
-func makeIncrementer() -> ((Int) -> Int) {
-    func addOne(number: Int) -> Int {
-        return 1 + number
+//函数是一级类型,可以返回另外一个函数...
+func makeIncrementer() -> ((Int) -> Int) { //注意看最后的大括号,发返回的东西带有箭头,那是函数家的玩意,返回的是一个int参数的int函数,
+    func addOne(number: Int) -> Int { //一个新的函数,而不是闭包,但是可以作为返回..
+        return 1 + number //构造了一个函数...
     }
     return addOne
 }
-var increment = makeIncrementer()
+var increment = makeIncrementer() //瞧唷,返回了一个函数,类型是[Int -> Int]
 increment(7)
 
+
+//加上一堆别名
+typealias 整数=Int;
+
+func 制造递加函数(基数 基数: 整数) -> ((递加数字: 整数) -> 整数){
+    //函数可以丢回去
+    func 加一(数字: 整数) -> 整数 {
+        return 基数 + 1 + 数字
+    }
+    //闭包也能丢回去
+    let 加二:((数字: 整数) -> 整数) = { 数字 in
+        return 基数 + 2 + 数字
+    }
+    return 加二
+}
+
+var 增加器 = 制造递加函数(基数: 2)
+增加器(递加数字: 3)
 //: A function can take another function as one of its arguments.
 //:
-func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
-    for item in list {
-        if condition(item) {
-            return true
+//函数可以接受另一个函数作为参数,这就有趣了,而且很重要,因为闭包参数的起源就是这里了!
+//隐藏:看起来很简单的特性,却蕴含了一切的奇妙...闭包回调的世界
+func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool { //参数1是一个整数数组,参数2是一个函数,接受整数参数和返回布尔结果,最终的返回是一个布尔值.整个玩意的作用是寻找任何匹配
+    for item in list { //对里面的每一项遍历,根据泛型,这里的每一项是整数
+        if condition(item) { //现在将参数的2的函数送来做判断...
+            return true //如果真的发生了,返回离开...
         }
     }
-    return false
+    return false //啥也没遇到,离开..
 }
-func lessThanTen(number: Int) -> Bool {
-    return number < 10
+
+
+//困扰:闭包什么时候捕捉变量呢?
+func lessThanTen(number: Int) -> Bool { //构造一个直接函数用来比较....也可以一个闭包是的,闭包是私有的函数...
+    return number < 10 //拿小于10来做个比较.
 }
-var numbers = [20, 19, 7, 12]
-hasAnyMatches(numbers, condition: lessThanTen)
+
+var numbers = [20, 19, 7, 12] //一个真实的整数数组
+hasAnyMatches(numbers, condition: lessThanTen) //送去判断..
 
 //: Functions are actually a special case of closures: blocks of code that can be called later. The code in a closure has access to things like variables and functions that were available in the scope where the closure was created, even if the closure is in a different scope when it is executed—you saw an example of this already with nested functions. You can write a closure without a name by surrounding code with braces (`{}`). Use `in` to separate the arguments and return type from the body.
 //:
