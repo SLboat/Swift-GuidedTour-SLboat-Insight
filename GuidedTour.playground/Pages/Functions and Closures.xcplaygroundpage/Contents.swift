@@ -145,25 +145,45 @@ hasAnyMatches(numbers, condition: lessThanTen) //送去判断..
 
 //: Functions are actually a special case of closures: blocks of code that can be called later. The code in a closure has access to things like variables and functions that were available in the scope where the closure was created, even if the closure is in a different scope when it is executed—you saw an example of this already with nested functions. You can write a closure without a name by surrounding code with braces (`{}`). Use `in` to separate the arguments and return type from the body.
 //:
-numbers.map({
-    (number: Int) -> Int in
-    let result = 3 * number
-    return result
-})
+// - 函数是一种特殊的闭包,一块可以之后调用的代码...那么对比的就是现在执行的那种留线语句了.
+// - 闭包里访问需要用到的变量和函数可以访问创建出就见过的那些东西 - (它不会层叠复制,因为闭包只要了解自己就够了.)
+// - 这个访问级别是跨过范围的,就像上面的嵌套函数,嵌套里的函数可以访问嵌套外的东西.
+// - 你可以写一个闭包通过花括号,而in则分割身体和头部(参数和返回值)
+
+numbers.map({ //闭包开始..
+    (number: Int) -> Int in //头部,魔法in
+    let result = 3 * number //身体的开始
+    return result //身体的返回
+}) //闭包结束...瞧,没有函数..这个闭包是几乎全然匿名的
+
+//实验,改写奇数返回0
+numbers.map { (num: Int) -> Int in
+    if (num % 2 == 1){ //奇数来的
+        return 0; //返回0
+    }
+    return num; //返回数字.
+}
 
 //: > **Experiment**:
 //: > Rewrite the closure to return zero for all odd numbers.
 //:
 //: You have several options for writing closures more concisely. When a closure’s type is already known, such as the callback for a delegate, you can omit the type of its parameters, its return type, or both. Single statement closures implicitly return the value of their only statement.
 //:
-let mappedNumbers = numbers.map({ number in 3 * number })
-print(mappedNumbers)
+// - 更简洁的写闭包,去掉了参数,去掉了返回值,因为这里只有一个语句,那么一切就默认了...
+// - 疯狂: 这里的闭包参数名称是推算出来的?不,是在in前面!哈!in是脖子!
+let mappedNumbers = numbers.map({ number in 3 * number }) //映射方式是返回三倍的数字哩!
+print(numbers,"改变后:", mappedNumbers)
 
 //: You can refer to parameters by number instead of by name—this approach is especially useful in very short closures. A closure passed as the last argument to a function can appear immediately after the parentheses. When a closure is the only argument to a function, you can omit the parentheses entirely.
 //:
+// - 用数字来引用参数,你想要一个极短的闭包?这条道路很好
+// - 加上之前的省略参数和类型,再加上这里的引用数字...简单的可怕
+// - 最后是作为唯一参数,圆括号也可以脱去!只剩下一个判断了...
 let sortedNumbers = numbers.sort { $0 > $1 }
 print(sortedNumbers)
 
+// - 疯狂,因为符号也是某种函数重载,这里可以剩下一个符号
+print(numbers.sort(>))
 
 
 //: [Previous](@previous) | [Next](@next)
