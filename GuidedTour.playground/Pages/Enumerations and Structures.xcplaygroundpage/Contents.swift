@@ -2,10 +2,11 @@
 //:
 //: Use `enum` to create an enumeration. Like classes and all other named types, enumerations can have methods associated with them.
 //:
-enum Rank: Int {
-    case Ace = 1
-    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
-    case Jack, Queen, King
+//枚举和结构,它们也可以有方法,哈!
+enum Rank: Int { //枚举的名称,原始值.
+    case Ace = 1 //一个值
+    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten //这些值看起来是默认生成值了
+    case Jack, Queen, King //继续按顺序生成,这是编译器做的!因为编译的时候就生就了.Jack.raValue = 10
     func simpleDescription() -> String {
         switch self {
             case .Ace:
@@ -21,8 +22,16 @@ enum Rank: Int {
         }
     }
 }
-let ace = Rank.Ace
-let aceRawValue = ace.rawValue
+
+let ace = Rank.Ace //赋予类型
+let aceRawValue = ace.rawValue //原始值
+
+//实验:一个比较函数...
+func compRank(ran1: Rank, ran2: Rank) -> Bool{
+    return ran1.rawValue == ran2.rawValue;
+}
+
+compRank(Rank.Ace, ran2: Rank.Jack)
 
 //: > **Experiment**:
 //: > Write a function that compares two `Rank` values by comparing their raw values.
@@ -31,6 +40,14 @@ let aceRawValue = ace.rawValue
 //:
 //: Use the `init?(rawValue:)` initializer to make an instance of an enumeration from a raw value.
 //:
+enum st:String{
+    case me = "me"
+    case you, her //猜猜看,字符串的原始值是什么?是自身!这里you="you"
+}
+st.you.rawValue //得到you
+st.her.rawValue //得到her
+
+
 if let convertedRank = Rank(rawValue: 3) {
     let threeDescription = convertedRank.simpleDescription()
 }
