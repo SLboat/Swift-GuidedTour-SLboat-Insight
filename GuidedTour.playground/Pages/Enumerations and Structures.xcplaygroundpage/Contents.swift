@@ -47,16 +47,17 @@ enum st:String{
 st.you.rawValue //得到you
 st.her.rawValue //得到her
 
-
+//从原始值来得到枚举类型
 if let convertedRank = Rank(rawValue: 3) {
     let threeDescription = convertedRank.simpleDescription()
 }
 
 //: The case values of an enumeration are actual values, not just another way of writing their raw values. In fact, in cases where there isn’t a meaningful raw value, you don’t have to provide one.
 //:
+//枚举的值是真实的值,不只是另一种方式来保存它们的原始值.事实上,对于可能找不到任何意义的原始值,你甚至你需要提供给一个
 enum Suit {
     case Spades, Hearts, Diamonds, Clubs
-    func simpleDescription() -> String {
+    func simpleDescription() -> String { //这里的魔法就是理解自己..
         switch self {
             case .Spades:
                 return "spades"
@@ -69,8 +70,12 @@ enum Suit {
         }
     }
 }
-let hearts = Suit.Hearts
-let heartsDescription = hearts.simpleDescription()
+let hearts = Suit.Hearts //赋予一个枚举值
+let heartsDescription = hearts.simpleDescription() //得到它的描述
+
+extension Suit{
+    func color{
+}
 
 //: > **Experiment**:
 //: > Add a `color()` method to `Suit` that returns “black” for spades and clubs, and returns “red” for hearts and diamonds.
