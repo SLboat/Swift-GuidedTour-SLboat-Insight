@@ -70,13 +70,21 @@ enum Suit {
         }
     }
 }
-let hearts = Suit.Hearts //赋予一个枚举值
+let hearts = Suit.Hearts //赋予一个枚举值,这里不知道类型,因此必须跟上名称啥的.
 let heartsDescription = hearts.simpleDescription() //得到它的描述
 
 extension Suit{
-    func color{
+    func color() -> String{ //总是能够计算和理解自己,哈!就像人理解我是谁.
+        switch self{
+        case .Spades, .Clubs: //类型已知,不需要指明自己就好了...
+            return "black"
+        case .Hearts, .Diamonds:
+            return "red"
+        }
+    }
 }
 
+Suit.Clubs.color() //得到的是black
 //: > **Experiment**:
 //: > Add a `color()` method to `Suit` that returns “black” for spades and clubs, and returns “red” for hearts and diamonds.
 //:
@@ -84,14 +92,14 @@ extension Suit{
 //:
 //: Use `struct` to create a structure. Structures support many of the same behaviors as classes, including methods and initializers. One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.
 //:
-struct Card {
+struct Card { //这是结构,它和类是如此的相似,甚至包括到有一样的方法和初始化器机制...
     var rank: Rank
     var suit: Suit
     func simpleDescription() -> String {
         return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
     }
 }
-let threeOfSpades = Card(rank: .Three, suit: .Spades)
+let threeOfSpades = Card(rank: .Three, suit: .Spades) //一个古怪的区别是拷贝自己来传递...
 let threeOfSpadesDescription = threeOfSpades.simpleDescription()
 
 //: > **Experiment**:
