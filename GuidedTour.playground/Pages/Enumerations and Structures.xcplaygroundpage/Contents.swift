@@ -100,7 +100,10 @@ struct Card { //这是结构,它和类是如此的相似,甚至包括到有一�
     }
 }
 let threeOfSpades = Card(rank: .Three, suit: .Spades) //一个古怪的区别是拷贝自己来传递...
-let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+let threeOfSpadesDescription = threeOfSpades.simpleDescription() //取得它的描述,这里是一个函数的值...
+let i = threeOfSpades
+i.simpleDescription()
+
 
 //: > **Experiment**:
 //: > Add a method to `Card` that creates a full deck of cards, with one card of each combination of rank and suit.
