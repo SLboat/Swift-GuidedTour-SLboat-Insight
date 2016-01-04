@@ -98,12 +98,25 @@ struct Card { //这是结构,它和类是如此的相似,甚至包括到有一�
     func simpleDescription() -> String {
         return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
     }
+    //练习-全部的卡
+    func all() -> [String]{
+        var cards = [String]()
+        for su in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "J", "P", "Q", "K"] {
+            for rn in ["♠️", "♣️", "♥️", "♦️"]{
+                cards.append("\(rn)\(su)")
+            }
+        }
+        return cards;
+    }
 }
 let threeOfSpades = Card(rank: .Three, suit: .Spades) //一个古怪的区别是拷贝自己来传递...
 let threeOfSpadesDescription = threeOfSpades.simpleDescription() //取得它的描述,这里是一个函数的值...
-let i = threeOfSpades
-i.simpleDescription()
 
+//赋值
+let i = threeOfSpades //赋予
+i.simpleDescription() //打印...
+
+print(threeOfSpades.all())
 
 //: > **Experiment**:
 //: > Add a method to `Card` that creates a full deck of cards, with one card of each combination of rank and suit.
@@ -112,9 +125,10 @@ i.simpleDescription()
 //:
 //: For example, consider the case of requesting the sunrise and sunset time from a server. The server either responds with the information or it responds with some error information.
 //:
+//关联值的枚举
 enum ServerResponse {
-    case Result(String, String)
-    case Error(String)
+    case Result(String, String) //一种结果关联,带有两个字符串
+    case Error(String) //错误关联,带有一个字符串
 }
 
 let success = ServerResponse.Result("6:00 am", "8:09 pm")
