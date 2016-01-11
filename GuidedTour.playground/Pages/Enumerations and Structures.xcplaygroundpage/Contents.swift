@@ -129,16 +129,20 @@ print(threeOfSpades.all())
 enum ServerResponse {
     case Result(String, String) //一种结果关联,带有两个字符串
     case Error(String) //错误关联,带有一个字符串
+    case NoNetWork
 }
 
-let success = ServerResponse.Result("6:00 am", "8:09 pm")
-let failure = ServerResponse.Error("Out of cheese.")
+let success = ServerResponse.Result("6:00 am", "8:09 pm") //注意看匹配的存在
+let failure = ServerResponse.Error("Out of cheese.") //即使几个是不同的情况,也很容易辨别
+let noNet = ServerResponse.NoNetWork
 
 switch success {
     case let .Result(sunrise, sunset):
         print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
     case let .Error(error):
         print("Failure...  \(error)")
+    default:
+        print("一种全新的情况-很可能是没有网络,哈!")
 }
 
 //: > **Experiment**:
