@@ -2,18 +2,18 @@
 //:
 //: Use `protocol` to declare a protocol.
 //:
-protocol ExampleProtocol {
-     var simpleDescription: String { get }
-     mutating func adjust()
+protocol ExampleProtocol { //定义了一个协议
+     var simpleDescription: String { get } //标识是一个取得方法,没有写入?或者至少有取得?
+     mutating func adjust() //一个会改变自身的方法...
 }
 
 //: Classes, enumerations, and structs can all adopt protocols.
 //:
-class SimpleClass: ExampleProtocol {
-     var simpleDescription: String = "A very simple class."
-     var anotherProperty: Int = 69105
-     func adjust() {
-          simpleDescription += "  Now 100% adjusted."
+class SimpleClass: ExampleProtocol { //类可以装载协议,采用,领养,哈!
+     var simpleDescription: String = "A very simple class." //实现了取方法
+     var anotherProperty: Int = 69105 //这是自己的属性啦
+     func adjust() { //这是协议里的方法
+          simpleDescription += "  Now 100% adjusted." //给自己加了东西...
      }
 }
 var a = SimpleClass()
