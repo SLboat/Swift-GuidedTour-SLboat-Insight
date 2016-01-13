@@ -16,20 +16,32 @@ class SimpleClass: ExampleProtocol { //类可以装载协议,采用,领养,哈!
           simpleDescription += "  Now 100% adjusted." //给自己加了东西...
      }
 }
-var a = SimpleClass()
-a.adjust()
-let aDescription = a.simpleDescription
+var a = SimpleClass() //建造一个类
+a.adjust() //调整自己...
+let aDescription = a.simpleDescription //现在信息被改变了
 
-struct SimpleStructure: ExampleProtocol {
+struct SimpleStructure: ExampleProtocol { //结构化的同样的它...
      var simpleDescription: String = "A simple structure"
-     mutating func adjust() {
+     mutating func adjust() { //增加调整字符
           simpleDescription += " (adjusted)"
      }
 }
+//同样的演化...
 var b = SimpleStructure()
 b.adjust()
 let bDescription = b.simpleDescription
 
+
+//练习: 枚举...
+enum mike: ExampleProtocol{
+    case me,you
+    var simpleDescription: String {
+        return "A simple structure"
+    }
+    mutating func adjust() {
+        self = .you
+    }
+}
 //: > **Experiment**:
 //: > Write an enumeration that conforms to this protocol.
 //:
