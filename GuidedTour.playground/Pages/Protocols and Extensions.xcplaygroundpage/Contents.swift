@@ -35,7 +35,8 @@ let bDescription = b.simpleDescription
 //练习: 枚举...
 enum mike: ExampleProtocol{
     case me,you
-    var simpleDescription: String {
+    var simpleDescription: String { //可以属性,但是只能是计算的,不能是存储的...存储的就是一个值记住的...
+        //想法: 计算属性,就像是存取器嘛
         return "A simple structure"
     }
     mutating func adjust() {
@@ -49,15 +50,27 @@ enum mike: ExampleProtocol{
 //:
 //: Use `extension` to add functionality to an existing type, such as new methods and computed properties. You can use an extension to add protocol conformance to a type that is declared elsewhere, or even to a type that you imported from a library or framework.
 //:
-extension Int: ExampleProtocol {
-    var simpleDescription: String {
+//扩展,可以扩展计算属性(不能存储属性),可以引入协议(甚至是外部的)
+extension Int: ExampleProtocol { //这是遵循了协议
+    var simpleDescription: String { //协议里的一个计算方法要求({get})
         return "The number \(self)"
     }
-    mutating func adjust() {
-        self += 42
+    mutating func adjust() { //变化自身,Int是个结构: struct Int : SignedIntegerType, Comparable, Equatable
+        self += 42 //改变自身
     }
  }
-print(7.simpleDescription)
+print(7.simpleDescription) //所有的数字现在都变化了...
+
+//练习:给double一个礼物...
+import Foundation //fabs依赖darwin
+
+extension Double{ //扩展Double
+    var absoluteValue: Double { //取得绝对值
+        return fabs(self)
+    }
+}
+
+-12.3.absoluteValue //得到12.3
 
 //: > **Experiment**:
 //: > Write an extension for the `Double` type that adds an `absoluteValue` property.
