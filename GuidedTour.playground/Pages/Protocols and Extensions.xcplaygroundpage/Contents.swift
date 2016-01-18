@@ -66,20 +66,21 @@ import Foundation //fabs依赖darwin
 
 extension Double{ //扩展Double
     var absoluteValue: Double { //取得绝对值
-        return fabs(self)
+        return fabs(self) //fabs至少需要darwin库的支持..
     }
 }
 
--12.3.absoluteValue //得到12.3
+-12.3.absoluteValue //得到12.3,负数,哈!
 
 //: > **Experiment**:
 //: > Write an extension for the `Double` type that adds an `absoluteValue` property.
 //:
 //: You can use a protocol name just like any other named type—for example, to create a collection of objects that have different types but that all conform to a single protocol. When you work with values whose type is a protocol type, methods outside the protocol definition are not available.
 //:
-let protocolValue: ExampleProtocol = a
+let protocolValue: ExampleProtocol = a //这里是一个扩展的别名,a被予以赋值了,并且加上了类型,类型可以不同,但是这里却被赋予了符合协议.
 print(protocolValue.simpleDescription)
-// print(protocolValue.anotherProperty)  // Uncomment to see the error
+// print(protocolValue.anotherProperty)  // Uncomment to see the error,这是属性意外的东西,将不存在
+
 
 //: Even though the variable `protocolValue` has a runtime type of `SimpleClass`, the compiler treats it as the given type of `ExampleProtocol`. This means that you can’t accidentally access methods or properties that the class implements in addition to its protocol conformance.
 //:

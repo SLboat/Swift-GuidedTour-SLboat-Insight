@@ -2,19 +2,23 @@
 //:
 //: Write a name inside angle brackets to make a generic function or type.
 //:
-func repeatItem<Item>(item: Item, numberOfTimes: Int) -> [Item] {
-    var result = [Item]()
-    for _ in 0..<numberOfTimes {
-         result.append(item)
+//在尖括号里写上一个名字,得到一个通用方法或者类型.
+func repeatItem<Item>(item: Item, numberOfTimes: Int) -> [Item] { //这里Item是一个代替名字
+    var result = [Item]() //结果的最初部分
+    for _ in 0..<numberOfTimes { //遍历次数
+         result.append(item) //翻滚自己...自己的数组总是能够容纳自己
     }
     return result
 }
-repeatItem("knock", numberOfTimes:4)
+repeatItem("knock", numberOfTimes:4) //演示它,这是个字符串
 
+repeatItem(12, numberOfTimes: 2) //数字也没有问题
+
+//妙处: 嗯...这些东西对啥子类都管用
 //: You can make generic forms of functions and methods, as well as classes, enumerations, and structures.
 //:
-// Reimplement the Swift standard library's optional type
-enum OptionalValue<Wrapped> {
+// 重新实现基本库的可选选项...
+enum OptionalValue<Wrapped> { //这里Wrapped是个代名词,看起来通常都喜欢大写首字母
     case None
     case Some(Wrapped)
 }
